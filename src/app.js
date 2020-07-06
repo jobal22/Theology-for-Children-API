@@ -4,7 +4,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
-const scripturesRouter = require('./scriptures/scriptures-router')
+const titusVersesRouter = require('./titusVerses/titusVerses-router')
 
 
 const app = express()
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
     res.send('Hello, world!')
 })
 
-app.use('/api/scriptures', scripturesRouter)
+app.use('/api/titusVerses', titusVersesRouter)
 
 
 app.use(function errorHandler(error, req, res, next) {
