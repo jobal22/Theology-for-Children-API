@@ -1,3 +1,4 @@
+require('dotenv').config()
 const knex = require('knex')
 const jsonServer = require('json-server')
 const app = require('./app')
@@ -15,6 +16,7 @@ const { PORT, API_BASE_URL} = require('./config')
 // })
 
 app.set('db', db)
+app.use(middlewares)
 
 app.listen(PORT, () => console.log(`Listening on port http://localhost:${PORT}`));
 

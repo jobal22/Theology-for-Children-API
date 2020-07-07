@@ -5,7 +5,8 @@ const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
 const titusVersesRouter = require('./titusVerses/titusVerses-router')
-
+const titusChaptersRouter = require('./titusChapters/titusChapters-router')
+const booksRouter = require('./books/books-router')
 
 const app = express()
 
@@ -22,6 +23,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/titusVerses', titusVersesRouter)
+app.use('/api/titusChapters', titusChaptersRouter)
+app.use('/api/books', booksRouter)
 
 
 app.use(function errorHandler(error, req, res, next) {

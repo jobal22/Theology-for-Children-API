@@ -37,7 +37,7 @@ titusVersesRouter
       .json(titusVerse)
   })
 
-  titusVersesRouter
+titusVersesRouter
   .route('/:titusVerseId')
   .get((req, res) => {
     const { titusVerseId } = req.params
@@ -51,7 +51,7 @@ titusVersesRouter
         .send('TitusVerse Not Found')
     }
 
-    res.json(titusVerse)
-  })
+  res.json(titusVerse)
+})
 
 module.exports = titusVersesRouter
