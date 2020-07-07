@@ -1,19 +1,16 @@
 require('dotenv').config()
+
 const knex = require('knex')
 const jsonServer = require('json-server')
 const app = require('./app')
-const db = require('./db')
+const { PORT, Database_URL } = require('./config')
 
-const server = jsonServer.create()
-// const router = jsonServer.router(db())
 const middlewares = jsonServer.defaults()
 
-const { PORT, API_BASE_URL} = require('./config')
-
-// const db = knex({
-//   client: 'pg',
-//   connection: API_BASE_URL,
-// })
+const db = knex({
+  client: 'pg',
+  connection: Database_URL,
+})
 
 app.set('db', db)
 app.use(middlewares)

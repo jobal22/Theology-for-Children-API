@@ -1,35 +1,53 @@
-const path = require('path')
 const express = require('express')
-const xss = require('xss')
-// const AddressesService = require('./addresses-service')
-const db = require('../db.json')
+const BooksService = require('./books-service')
 const logger = require('../logger')
 
-const booksRouter = express.Router()
-const bodyParser = express.json()
+const BooksRouter = express.Router()
+const jsonParser = express.json()
 
 
-booksRouter
+BooksRouter
   .route('/')
   .get((req, res, next) => {
-        res.json(db.books)
+    const knexInstance = req.app.get('db')
+    BooksService.getAllBooks(knexInstance)
+      .then(books => {
+          res.json(books)
+      })
+      .catch(next)
   })
 
-booksRouter
-  .route('/:booksId')
-  .get((req, res) => {
-    const { booksId } = req.params
+  BooksRouter
+  .route('/:bookId')
+  .all((req, res, next) => {
+    BooksService.getById(
+      req.app.get('db'),
+      req.params.bookId
+    )
+      .then(book => {
+        if (!book) {
+          return res.status(404).json({
+            error: { message: `Book doesn't exist` }
+          })
+        }
+        res.book = book
+        next()
+      })
+      .catch(next)
+  })
 
-    const book = db.books.find(s => s.id == booksId)
+  .get((req, res, next) => {
+    const knexInstance = req.app.get('db')
+    BooksService.getById(knexInstance, req.params.bookId)
+      .then(book => {
+        if (!book) {
+          return res.status(404).json({
+            error: { message: `Book doesn't exist` }
+          })
+        }
+        res.json(book)
+      })
+      .catch(next)
+  })
 
-    if (!book) {
-      logger.error(`Book with id ${booksId} not found.`)
-      return res
-        .status(404)
-        .send('Book Not Found')
-    }
-
-  res.json(book)
-})
-
-module.exports = booksRouter
+module.exports = BooksRouter
