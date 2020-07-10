@@ -15,6 +15,6 @@ const db = knex({
 app.set('db', db)
 app.use(middlewares)
 
-app.listen(PORT, () => console.log(`Listening on port http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Listening at https://tranquil-journey-05910.herokuapp.com`));
 
 module.exports = {app};
