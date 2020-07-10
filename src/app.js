@@ -7,6 +7,9 @@ const { NODE_ENV } = require('./config')
 const versesRouter = require('./verses/verses-router')
 const chaptersRouter = require('./chapters/chapters-router')
 const booksRouter = require('./books/books-router')
+const plantitlesRouter = require('./plantitle/plantitle-router')
+const plansRouter = require('./plans/plans-router')
+const contentsRouter = require('./contents/contents-router')
 
 const app = express()
 
@@ -25,6 +28,9 @@ app.get('/', (req, res) => {
 app.use('/api/verses', versesRouter)
 app.use('/api/chapters', chaptersRouter)
 app.use('/api/books', booksRouter)
+app.use('/api/plantitles', plantitlesRouter)
+app.use('/api/plans', plansRouter)
+app.use('/api/contents', contentsRouter)
 
 app.use(function errorHandler(error, req, res, next) {
     let response

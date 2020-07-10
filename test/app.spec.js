@@ -1,9 +1,9 @@
 const supertest = require('supertest');
 const chai = require('chai');
 const app = require('../src/app')
-const titusVersesRouter = require('../src/titusVerses/titusVerses-router')
-const titusChaptersRouter = require('../src/titusChapters/titusChapters-router')
-const booksRouter = require('../src/books/books-router')
+const versesRouter = require('../src/verses/verses-router')
+// const titusChaptersRouter = require('../src/titusChapters/titusChapters-router')
+// const booksRouter = require('../src/books/books-router')
 const { expect } = require('chai');
 
 describe('App', () => {
@@ -14,10 +14,10 @@ describe('App', () => {
   })
 })
 
-describe('TitusVerses', function() {
-  it('should list TitusVerses on GET', function() {
+describe('Verses', function() {
+  it('should list Verses on GET', function() {
     return supertest(app)
-    .get('/api/titusVerses')
+    .get('/api/verses')
     .then(function(res) {
       expect(201);
     });
