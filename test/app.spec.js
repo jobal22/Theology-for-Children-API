@@ -7,6 +7,8 @@ const booksRouter = require('../src/books/books-router');
 const plantitlesRouter = require('../src/plantitle/plantitle-router');
 const plansRouter = require('../src/plans/plans-router');
 const contentsRouter = require('../src/contents/contents-router');
+const quiztitlesRouter = require('../src/quiztitles/quiztitles-router');
+const quizesRouter = require('../src/quizes/quizes-router');
 const { expect } = require('chai');
 
 describe('App', () => {
@@ -84,4 +86,34 @@ describe('Contents', function() {
       expect(201);
     });
   });
+});
+
+describe('Quiz Titles', function() {
+  it('should list Contents on GET', function() {
+    return supertest(app)
+    .get('/api/quiztitles')
+    .then(function(res) {
+      expect(201);
+    });
+  });
+});
+
+describe('Quizes', function() {
+  it('should list Contents on GET', function() {
+    return supertest(app)
+    .get('/api/quizes')
+    .then(function(res) {
+      expect(201);
+    });
+  });
+  it("should edit an quiz answer on PATCH", function() {
+    const newItem = { id: 1, answer: 'Paul' };
+    return supertest(app)
+      .patch("/api/quizes/1")
+      .send(newItem)
+      .then(function(res) {
+        expect(202);
+      });
+  });
+
 });

@@ -10,6 +10,9 @@ const booksRouter = require('./books/books-router')
 const plantitlesRouter = require('./plantitle/plantitle-router')
 const plansRouter = require('./plans/plans-router')
 const contentsRouter = require('./contents/contents-router')
+const quiztitlesRouter = require('./quiztitles/quiztitles-router')
+const quizesRouter = require('./quizes/quizes-router')
+
 
 const app = express()
 
@@ -31,6 +34,9 @@ app.use('/api/books', booksRouter)
 app.use('/api/plantitles', plantitlesRouter)
 app.use('/api/plans', plansRouter)
 app.use('/api/contents', contentsRouter)
+app.use('/api/quiztitles', quiztitlesRouter)
+app.use('/api/quizes', quizesRouter)
+
 
 app.use(function errorHandler(error, req, res, next) {
     let response
