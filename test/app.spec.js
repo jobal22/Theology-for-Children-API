@@ -107,7 +107,7 @@ describe('Quizes', function() {
     });
   });
   it("should edit an quiz answer on PATCH", function() {
-    const newItem = { id: 1, answer: 'Paul' };
+    const newItem = { id: 1, useranswer: 'Paul' };
     return supertest(app)
       .patch("/api/quizes/1")
       .send(newItem)

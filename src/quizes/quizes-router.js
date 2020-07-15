@@ -50,13 +50,13 @@ QuizesRouter
   })
 
   .patch(jsonParser, (req, res, next) => {
-    const {name, answer} = req.body
-    const answerToUpdate = {answer}
+    const {name, useranswer} = req.body
+    const useranswerToUpdate = {useranswer}
 
     QuizesService.updateQuiz(
         req.app.get('db'),
         req.params.quizId,
-        answerToUpdate
+        useranswerToUpdate
         )
         .then(numRowsAffected => {
             res.status(204).end()
