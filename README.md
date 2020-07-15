@@ -1,26 +1,26 @@
-# Express Boilerplate!
+# Theology for Children API
 
-This is a boilerplate project used for starting new projects!
+This is an API that was made for the 'Theology for Children App.'
 
-## Set up
+## Link:
+https://tranquil-journey-05910.herokuapp.com
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+##Documentation
+The Database contains eight tables: 1) books, 2) chapters, 3) verses, 4) plantitles, 5) plans, 6) contents, 7) quiztitles, and 8) quizes. Each table for the API uses GET requests.
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+GET
+In order to make a GET request:
+books: '/api/books'
+chapters: '/api/chapters'
+verses: '/api/verses'
+plantitles: /api/plantitles'
+plans: '/api/plans'
+contents: '/api/contents'
+quiztitles: '/api/quiztitles'
+quizes: '/api/quizes'
 
-## Scripts
+## Description
+This API connects to a Database that has eight tables: 1) books, 2) chapters, 3) verses, 4) plantitles, 5) plans, 6) contents, 7) quiztitles, and 8) quizes. The API allows the App to make GET request for all tables table.
 
-Start the application `npm start`
-
-Start nodemon for the application `npm run dev`
-
-Run the tests `npm test`
-
-## Deploying
-
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+## Technologies Used
+Node/Express/PostgreSQL/JSON/TSQL
