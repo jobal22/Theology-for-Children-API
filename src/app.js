@@ -13,6 +13,7 @@ const contentsRouter = require('./contents/contents-router')
 const quiztitlesRouter = require('./quiztitles/quiztitles-router')
 const quizesRouter = require('./quizes/quizes-router')
 const usersRouter = require('./users/users-router')
+const scoresRouter = require('./answers1/scores-router')
 
 const app = express()
 
@@ -37,7 +38,7 @@ app.use('/api/contents', contentsRouter)
 app.use('/api/quiztitles', quiztitlesRouter)
 app.use('/api/quizes', quizesRouter)
 app.use('/api/users', usersRouter)
-
+app.use('/api/scores', scoresRouter)
 
 app.use(function errorHandler(error, req, res, next) {
     let response

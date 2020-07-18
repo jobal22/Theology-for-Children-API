@@ -3,7 +3,7 @@ const express = require('express')
 const xss = require('xss')
 const UsersService = require('./users-service')
 
-const usersRouter = express.Router()
+const UsersRouter = express.Router()
 const jsonParser = express.json()
 
 const serializeUser = user => ({
@@ -12,7 +12,7 @@ const serializeUser = user => ({
   username: xss(user.username),
 })
 
-usersRouter
+UsersRouter
   .route('/')
   .get((req, res, next) => {
     const knexInstance = req.app.get('db')
@@ -50,7 +50,7 @@ usersRouter
       .catch(next)
   })
 
-usersRouter
+UsersRouter
   .route('/:user_id')
   .all((req, res, next) => {
     UsersService.getById(
@@ -104,4 +104,4 @@ usersRouter
       .catch(next)
   })
 
-module.exports = usersRouter
+module.exports = UsersRouter

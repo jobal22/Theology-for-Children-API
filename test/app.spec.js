@@ -9,7 +9,9 @@ const plansRouter = require('../src/plans/plans-router');
 const contentsRouter = require('../src/contents/contents-router');
 const quiztitlesRouter = require('../src/quiztitles/quiztitles-router');
 const quizesRouter = require('../src/quizes/quizes-router');
+// const usersRouter = require('./users/users-router')
 const { expect } = require('chai');
+// const { makeUsersArray } = require('./users.fixtures')
 
 describe('App', () => {
   it('GET / responds with 200 containing "Hello, world!"', () => {
@@ -115,5 +117,14 @@ describe('Quizes', function() {
         expect(202);
       });
   });
-
 });
+
+// describe('Users', function() {
+//   it('should list Users on GET', function() {
+//     return supertest(app)
+//     .get('/api/users')
+//     .then(function(res) {
+//       expect(201);
+//     });
+//   });
+// });
