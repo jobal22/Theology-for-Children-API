@@ -119,12 +119,76 @@ describe('Quizes', function() {
   });
 });
 
-// describe('Users', function() {
-//   it('should list Users on GET', function() {
-//     return supertest(app)
-//     .get('/api/users')
-//     .then(function(res) {
-//       expect(201);
-//     });
-//   });
-// });
+describe('Users', function() {
+  it('should list Users on GET', function() {
+    return supertest(app)
+    .get('/api/users')
+    .then(function(res) {
+      expect(201);
+    });
+  });
+  it("should add an Users on POST", function() {
+    const newItem = { fullname: 'Sam Gamgee', username: 'sam.gamgee@shire.com', password: 'secret'};
+    return supertest(app)
+      .post("/api/users")
+      .send(newItem)
+      .then(function(res) {
+        expect(202);
+      });
+  });
+  it("should edit an Users on PATCH", function() {
+    const newItem = { id: 333, fullname: 'Sam George', username: 'sam.gamgee@shire.com', password: 'secret' };
+    return supertest(app)
+      .patch("/api/users/333")
+      .send(newItem)
+      .then(function(res) {
+        expect(202);
+      });
+  });
+  it("should delete an Users on DELETE", function() {
+    const newItem = { id: 333, fullname: 'Sam George', username: 'sam.gamgee@shire.com', password: 'secret' };
+    return supertest(app)
+      .delete("/api/users/333")
+      .send(newItem)
+      .then(function(res) { 
+        expect(202);
+      });
+  });
+});
+
+describe('Scores', function() {
+  it('should list Scores on GET', function() {
+    return supertest(app)
+    .get('/api/scores')
+    .then(function(res) {
+      expect(201);
+    });
+  });
+  it("should add an Scores on POST", function() {
+    const newItem = { useranswer: 'peter', quiz_id: '1', user_id: '333'};
+    return supertest(app)
+      .post("/api/scores")
+      .send(newItem)
+      .then(function(res) {
+        expect(202);
+      });
+  });
+  it("should edit an Scores on PATCH", function() {
+    const newItem = { id: 333, useranswer: 'peter', quiz_id: '1', user_id: '333' };
+    return supertest(app)
+      .patch("/api/scores/333")
+      .send(newItem)
+      .then(function(res) {
+        expect(202);
+      });
+  });
+  it("should delete an Scores on DELETE", function() {
+    const newItem = { id: 333, useranswer: 'peter', quiz_id: '1', user_id: '333' };
+    return supertest(app)
+      .delete("/api/scores/333")
+      .send(newItem)
+      .then(function(res) { 
+        expect(202);
+      });
+  });
+});

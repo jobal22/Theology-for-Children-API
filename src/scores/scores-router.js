@@ -1,14 +1,14 @@
 const path = require('path')
 const express = require('express')
 const xss = require('xss')
-const ScoresService = require('./answer-service')
+const ScoresService = require('./scores-service')
 
 const ScoresRouter = express.Router()
 const jsonParser = express.json()
 
 const serializeScore = score => ({
   id: score.id,
-  text: xss(score.text),
+  useranswer: xss(score.useranswer),
   quiz_id: score.quiz_id,
   user_id: score.user_id
 })
@@ -24,8 +24,8 @@ ScoresRouter
       .catch(next)
   })
   .post(jsonParser, (req, res, next) => {
-    const { text, quiz_id, user_id } = req.body
-    const newScore = { text, quiz_id, user_id }
+    const { useranswer, quiz_id, user_id } = req.body
+    const newScore = { useranswer, quiz_id, user_id }
 
     for (const [key, value] of Object.entries(newScore))
       if (value == null)
@@ -78,14 +78,14 @@ ScoresRouter
       .catch(next)
   })
   .patch(jsonParser, (req, res, next) => {
-    const { text } = req.body
-    const scoreToUpdate = { text }
+    const { useranswer } = req.body
+    const scoreToUpdate = { useranswer }
 
     const numberOfValues = Object.values(scoreToUpdate).filter(Boolean).length
     if (numberOfValues === 0)
       return res.status(400).json({
         error: {
-          message: `Request body must contain 'text'`
+          message: `Request body must contain 'useranswer'`
         }
       })
 

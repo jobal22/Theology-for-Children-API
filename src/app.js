@@ -13,7 +13,7 @@ const contentsRouter = require('./contents/contents-router')
 const quiztitlesRouter = require('./quiztitles/quiztitles-router')
 const quizesRouter = require('./quizes/quizes-router')
 const usersRouter = require('./users/users-router')
-const scoresRouter = require('./answers1/scores-router')
+const scoresRouter = require('./scores/scores-router')
 
 const app = express()
 
