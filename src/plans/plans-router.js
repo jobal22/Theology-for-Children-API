@@ -1,6 +1,8 @@
 const express = require('express')
 const PlansService = require('./plans-service')
 const logger = require('../logger')
+const { requireAuth } = require('../middleware/basic-auth')
+
 
 const PlansRouter = express.Router()
 const jsonParser = express.json()
@@ -19,6 +21,7 @@ PlansRouter
 
   PlansRouter
   .route('/:planId')
+  .all(requireAuth)
   .all((req, res, next) => {
     PlansService.getById(
       req.app.get('db'),

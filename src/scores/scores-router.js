@@ -2,6 +2,7 @@ const path = require('path')
 const express = require('express')
 const xss = require('xss')
 const ScoresService = require('./scores-service')
+const { requireAuth } = require('../middleware/basic-auth')
 
 const ScoresRouter = express.Router()
 const jsonParser = express.json()
@@ -24,14 +25,16 @@ ScoresRouter
       .catch(next)
   })
   .post(jsonParser, (req, res, next) => {
-    const { useranswer, quiz_id, user_id } = req.body
-    const newScore = { useranswer, quiz_id, user_id }
+    const { useranswer, quiz_id} = req.body
+    const newScore = { useranswer, quiz_id }
 
     for (const [key, value] of Object.entries(newScore))
       if (value == null)
         return res.status(400).json({
           error: { message: `Missing '${key}' in request body` }
         })
+
+      newScore.user_id = req.user.id
 
     ScoresService.insertScore(
       req.app.get('db'),
